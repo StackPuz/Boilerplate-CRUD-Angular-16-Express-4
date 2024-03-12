@@ -1,0 +1,5 @@
+/angular/.angular
+/angular/node_modules
+/angular/package-lock.json
+/express_api/node_modules
+/express_api/package-lock.json
