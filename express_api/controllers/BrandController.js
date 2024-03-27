@@ -52,7 +52,7 @@ exports.get = (req, res, next) => {
     .toString()
   let sqlBrandProduct = knex('Brand')
     .join('Product', 'Brand.id', 'Product.brand_id')
-    .select('Product.name', 'Product.price', 'Product.id')
+    .select('Product.name', 'Product.price')
     .where('Brand.id', req.params.id)
     .toString()
   Promise.all([
@@ -68,8 +68,16 @@ exports.edit = (req, res, next) => {
     .select('Brand.id', 'Brand.name')
     .where('Brand.id', req.params.id)
     .toString()
-  db.query(sqlBrand, { type: 'SELECT', plain: true }).then(brand => {
-    res.send({ brand })
+  let sqlBrandProduct = knex('Brand')
+    .join('Product', 'Brand.id', 'Product.brand_id')
+    .select('Product.name', 'Product.price', 'Product.id')
+    .where('Brand.id', req.params.id)
+    .toString()
+  Promise.all([
+    db.query(sqlBrand, { type: 'SELECT', plain: true }),
+    db.query(sqlBrandProduct, { type: 'SELECT' })
+  ]).then(([ brand, brandProducts ]) => {
+    res.send({ brand, brandProducts })
   }).catch(next)
 }
 
@@ -85,8 +93,16 @@ exports.getDelete = (req, res, next) => {
     .select('Brand.id', 'Brand.name')
     .where('Brand.id', req.params.id)
     .toString()
-  db.query(sqlBrand, { type: 'SELECT', plain: true }).then(brand => {
-    res.send({ brand })
+  let sqlBrandProduct = knex('Brand')
+    .join('Product', 'Brand.id', 'Product.brand_id')
+    .select('Product.name', 'Product.price')
+    .where('Brand.id', req.params.id)
+    .toString()
+  Promise.all([
+    db.query(sqlBrand, { type: 'SELECT', plain: true }),
+    db.query(sqlBrandProduct, { type: 'SELECT' })
+  ]).then(([ brand, brandProducts ]) => {
+    res.send({ brand, brandProducts })
   }).catch(next)
 }
 

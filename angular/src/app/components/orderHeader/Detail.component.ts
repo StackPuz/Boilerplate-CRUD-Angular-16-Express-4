@@ -30,7 +30,6 @@ import { Util } from '../../util.service'
                       <th>No</th>
                       <th>Product</th>
                       <th>Qty</th>
-                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -38,15 +37,9 @@ import { Util } from '../../util.service'
                       <td class="text-center">{{orderHeaderOrderDetail.no}}</td>
                       <td>{{orderHeaderOrderDetail.product_name}}</td>
                       <td class="text-right">{{orderHeaderOrderDetail.qty}}</td>
-                      <td class="text-center">
-                        <a class="btn btn-sm btn-primary" routerLink="/orderDetail/edit/{{orderHeaderOrderDetail.order_id}}/{{orderHeaderOrderDetail.no}}" title="Edit"><i class="fa fa-pencil"></i></a>
-                        <a class="btn btn-sm btn-danger" routerLink="/orderDetail/delete/{{orderHeaderOrderDetail.order_id}}/{{orderHeaderOrderDetail.no}}" title="Delete"><i class="fa fa-times"></i></a>
-                      </td>
                     </tr>
                   </tbody>
                 </table>
-                <a class="btn btn-sm btn-primary" (click)="util.goto($event)" href="/orderDetail/create?order_detail_order_id={{orderHeader.id}}">Add</a>
-                <hr />
               </div>
               <div class="col-12">
                 <a class="btn btn-sm btn-secondary" (click)="util.goBack('/orderHeader', $event)" routerLink="/orderHeader">Back</a>

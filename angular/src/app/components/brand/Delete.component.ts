@@ -20,6 +20,23 @@ import { Util } from '../../util.service'
                 <input readonly id="brand_name" name="name" class="form-control form-control-sm" value="{{brand.name}}" required maxlength="50" />
               </div>
               <div class="col-12">
+                <h6>Brand's products</h6>
+                <table class="table table-sm table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>Product Name</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let brandProduct of brandProducts">
+                      <td>{{brandProduct.name}}</td>
+                      <td class="text-right">{{brandProduct.price}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12">
                 <a class="btn btn-sm btn-secondary" (click)="util.goBack('/brand', $event)" routerLink="/brand">Cancel</a>
                 <button class="btn btn-sm btn-danger">Delete</button>
               </div>
@@ -32,6 +49,7 @@ import { Util } from '../../util.service'
 export class BrandDelete {
   
   brand?: any = {}
+  brandProducts?: any[]
   constructor(private router: Router, private route: ActivatedRoute, private BrandService: BrandService, public util: Util) { }
   
   ngOnInit() {
@@ -43,6 +61,7 @@ export class BrandDelete {
   get() {
     return this.BrandService.delete(this.route.snapshot.params['id']).subscribe(data => {
       this.brand = data.brand
+      this.brandProducts = data.brandProducts
     })
   }
 

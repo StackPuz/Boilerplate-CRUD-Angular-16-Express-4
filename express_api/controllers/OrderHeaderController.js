@@ -63,7 +63,7 @@ exports.get = (req, res, next) => {
   let sqlOrderHeaderOrderDetail = knex('OrderHeader')
     .join('OrderDetail', 'OrderHeader.id', 'OrderDetail.order_id')
     .join('Product', 'OrderDetail.product_id', 'Product.id')
-    .select('OrderDetail.no', 'Product.name as product_name', 'OrderDetail.qty', 'OrderDetail.order_id')
+    .select('OrderDetail.no', 'Product.name as product_name', 'OrderDetail.qty')
     .where('OrderHeader.id', req.params.id)
     .toString()
   Promise.all([
@@ -79,14 +79,21 @@ exports.edit = (req, res, next) => {
     .select('OrderHeader.id', 'OrderHeader.customer_id', 'OrderHeader.order_date')
     .where('OrderHeader.id', req.params.id)
     .toString()
+  let sqlOrderHeaderOrderDetail = knex('OrderHeader')
+    .join('OrderDetail', 'OrderHeader.id', 'OrderDetail.order_id')
+    .join('Product', 'OrderDetail.product_id', 'Product.id')
+    .select('OrderDetail.no', 'Product.name as product_name', 'OrderDetail.qty', 'OrderDetail.order_id')
+    .where('OrderHeader.id', req.params.id)
+    .toString()
   let sqlCustomer = knex('Customer')
     .select('Customer.id', 'Customer.name')
     .toString()
   Promise.all([
     db.query(sqlOrderHeader, { type: 'SELECT', plain: true }),
+    db.query(sqlOrderHeaderOrderDetail, { type: 'SELECT' }),
     db.query(sqlCustomer, { type: 'SELECT' })
-  ]).then(([ orderHeader, customers ]) => {
-    res.send({ orderHeader, customers })
+  ]).then(([ orderHeader, orderHeaderOrderDetails, customers ]) => {
+    res.send({ orderHeader, orderHeaderOrderDetails, customers })
   }).catch(next)
 }
 
@@ -103,8 +110,17 @@ exports.getDelete = (req, res, next) => {
     .select('OrderHeader.id', 'Customer.name as customer_name', 'OrderHeader.order_date')
     .where('OrderHeader.id', req.params.id)
     .toString()
-  db.query(sqlOrderHeader, { type: 'SELECT', plain: true }).then(orderHeader => {
-    res.send({ orderHeader })
+  let sqlOrderHeaderOrderDetail = knex('OrderHeader')
+    .join('OrderDetail', 'OrderHeader.id', 'OrderDetail.order_id')
+    .join('Product', 'OrderDetail.product_id', 'Product.id')
+    .select('OrderDetail.no', 'Product.name as product_name', 'OrderDetail.qty')
+    .where('OrderHeader.id', req.params.id)
+    .toString()
+  Promise.all([
+    db.query(sqlOrderHeader, { type: 'SELECT', plain: true }),
+    db.query(sqlOrderHeaderOrderDetail, { type: 'SELECT' })
+  ]).then(([ orderHeader, orderHeaderOrderDetails ]) => {
+    res.send({ orderHeader, orderHeaderOrderDetails })
   }).catch(next)
 }
 

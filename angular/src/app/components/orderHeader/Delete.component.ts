@@ -24,6 +24,24 @@ import { Util } from '../../util.service'
                 <input readonly id="order_header_order_date" name="order_date" class="form-control form-control-sm" value="{{orderHeader.order_date}}" data-type="date" autocomplete="off" required />
               </div>
               <div class="col-12">
+                <table class="table table-sm table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Product</th>
+                      <th>Qty</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let orderHeaderOrderDetail of orderHeaderOrderDetails">
+                      <td class="text-center">{{orderHeaderOrderDetail.no}}</td>
+                      <td>{{orderHeaderOrderDetail.product_name}}</td>
+                      <td class="text-right">{{orderHeaderOrderDetail.qty}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12">
                 <a class="btn btn-sm btn-secondary" (click)="util.goBack('/orderHeader', $event)" routerLink="/orderHeader">Cancel</a>
                 <button class="btn btn-sm btn-danger">Delete</button>
               </div>
@@ -36,6 +54,7 @@ import { Util } from '../../util.service'
 export class OrderHeaderDelete {
   
   orderHeader?: any = {}
+  orderHeaderOrderDetails?: any[]
   constructor(private router: Router, private route: ActivatedRoute, private OrderHeaderService: OrderHeaderService, public util: Util) { }
   
   ngOnInit() {
@@ -47,6 +66,7 @@ export class OrderHeaderDelete {
   get() {
     return this.OrderHeaderService.delete(this.route.snapshot.params['id']).subscribe(data => {
       this.orderHeader = data.orderHeader
+      this.orderHeaderOrderDetails = data.orderHeaderOrderDetails
     })
   }
 

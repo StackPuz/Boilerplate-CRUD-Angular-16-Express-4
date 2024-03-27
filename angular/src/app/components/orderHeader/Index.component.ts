@@ -53,6 +53,7 @@ import { Subscription } from 'rxjs'
                   <td class="text-center">{{orderHeader.order_date}}</td>
                   <td class="text-center">
                     <a class="btn btn-sm btn-secondary" routerLink="/orderHeader/{{orderHeader.id}}" title="View"><i class="fa fa-eye"></i></a>
+                    <a class="btn btn-sm btn-primary" routerLink="/orderHeader/edit/{{orderHeader.id}}" title="Edit"><i class="fa fa-pencil"></i></a>
                     <a class="btn btn-sm btn-danger" routerLink="/orderHeader/delete/{{orderHeader.id}}" title="Delete"><i class="fa fa-times"></i></a>
                   </td>
                 </tr>
