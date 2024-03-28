@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-const authen = require('./authen')
+const authen = require('./middleware/authen')
 const router = require('./router.js')
 const util = require('./util')
 

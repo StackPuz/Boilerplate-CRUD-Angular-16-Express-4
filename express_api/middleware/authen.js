@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const jwtSecret = require('./config').jwtSecret
+const jwtSecret = require('../config').jwtSecret
 
 let allows = [ '/api/login', '/api/logout', '/api/resetPassword', '/api/changePassword', '/api/stack' ]
 

@@ -1,6 +1,6 @@
 const express = require('express')
 const util = require('./util')
-const authorize = require('./authorize')
+const authorize = require('./middleware/authorize')
 const system = require('./controllers/SystemController.js')
 const authen = require('./controllers/LoginController.js')
 const userAccount = require('./controllers/UserAccountController.js')
