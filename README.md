@@ -1,5 +1,5 @@
 # Boilerplate-CRUD-Angular-16-Express-4
-Boilerplate Boilerplate CRUD Web App created with Angular 16 + Express 4 by [StackPuz](https://stackpuz.com).
+Boilerplate CRUD Web App created with Angular 16 + Express 4 by [StackPuz](https://stackpuz.com).
 
 ## Demo
 Checkout the live demo at https://demo-spa.stackpuz.com
