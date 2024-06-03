@@ -1,5 +1,5 @@
-# Backend-CRUD-Angular-16-Express-4
-Boilerplate Backend CRUD Web App created with Angular 16 + Express 4 by [StackPuz](https://stackpuz.com).
+# Boilerplate-CRUD-Angular-16-Express-4
+Boilerplate Boilerplate CRUD Web App created with Angular 16 + Express 4 by [StackPuz](https://stackpuz.com).
 
 ## Demo
 Checkout the live demo at https://demo-spa.stackpuz.com
@@ -20,8 +20,8 @@ Checkout the live demo at https://demo-spa.stackpuz.com
 - MySQL 5.7
 
 ## Installation
-1. Clone this repository. `git clone https://github.com/stackpuz/Backend-CRUD-Angular-16-Express-4.git .`
-2. Change directory to Angular project. `cd Backend-CRUD-Angular-16-Express-4/angular`
+1. Clone this repository. `git clone https://github.com/stackpuz/Boilerplate-CRUD-Angular-16-Express-4.git .`
+2. Change directory to Angular project. `cd Boilerplate-CRUD-Angular-16-Express-4/angular`
 3. Install the Angular dependencies. `npm install`
 4. Change directory to Express project. `cd ../express_api`
 5. Install the Express dependencies. `npm install`
